@@ -1,0 +1,69 @@
+* Hive의 주요 네 가지 구성요소
+① HiveCLI 
+- Hive CLI 는 Input Command를 받아들이고 파싱(해석)함
+  adhoc 쿼리 (상황에 맞춰 동적으로 생성하여 사용하는 쿼리)를 수행하는 일반적인 방법
+  Metastore에 대한 연결을 포함하여 Hive Client 또는 드라이버 애플리케이션이 로컬 시스템에 배포될 때 사용
+- Beeline 은 경량 CLI
+  HiveServer2라는 여러 Client를 위한 대규모 다중 세션 드라이버 응용 프로그램에 사용
+  Beeline은 시각화 도구 등 외부 Client에서 사용할 수 있는 JDB 인터페이스를 제공
+
+② Hive 드라이버 애플리케이션
+- HiveQL parsing, 쿼리 실행 계획, 쿼리 작업을 Hadoop에 제출, 쿼리 실행 진행률 모니터링 작업 수행
+
+③ Hive Object
+- Hive는 HDFS의 Hive Object에 대한 Table 형식 추상화를 구현하여, 디렉토리와 파일 자체 모델의 Table.로 표시
+  관계형 DB에서와 마찬가지로 Table에서는 SQL DDL(데이터 정의어) Command를 사용하여 생성된 지정 데이터
+  유형으로 미리 정의된 열이 존재
+-  HDFS의 데이터는 다른 DB관리 시스템과 마찬가지로 SQL DML(데이터 조작어)를 통해 액세스 가능
+
+- Hive Object는 Database와 Table로 구성
+- Hive Database : 조직, 권한 부여 및 네임스페이스 관리에 사용
+- Hive Table : Hive Database에 존재 
+
+** RDBMS와 Hive의 가장 큰 차이
+- HDFS는 변경할 수 없는 파일 시스템으로 append만 가능, 업데이트는 지원되지 않음
+
+④ Hive Metastore
+- Hive 메타데이터의 중앙 저장소
+- 기본 Database는 내장 Derby Database이지만, MySQL 또는 PostgreSQL과 같은
+  로컬 또는 원격 Database로 설정 가능
+- 대부분 경의 개발자와 다른 사람들이 Object 정의를 공유할 수 있도록 하는 공유 Database
+
+(Except) Input/Output Format 및 SerDes
+- Hive는 InputFormat 및 SerDe를 사용하여 Input 파일을 읽고 처리를 위해 레코드를 추출하는 방법을 결정
+ 
+* Hive Architecture
+- Hive Server : map reduce 또는 spark를 실행 엔진으로 사용하는 hive SQL 엔진이 있음
+- Hive는 실행 계획을 생성한 다음 실행 엔진을 호출하여 Hive에서 수행한 최적화로 쿼리를 실행
+- Hive 서비스를 통해 Client는 Hive에 대해 쿼리를 실행
+- Hive와 통신하기 위해 Hive Server에서 실행해야 하는 Thrift, JDBC, ODBC 드라이버를 사용하는
+  응용 프로그램과도 상호 작용
+
+- Thrift Client : 플랫폼 간 서비스를 구축하기 위한 RPC 프레임 워크
+  Thrift 인터페이스는 다리 역할을 하여 다른 언어가 Hive에 액세스 할 수 있도록 함
+  Java Client와 상호 작용하는 Thrift Server가 있음.
+
+- Spark Thrift Server는 Hive Server를 대체가능, Spark를 사용하여 쿼리를 실행하고 자체 계획을 수행
+  RDD, 텍스트 파일과 같은 다른 스파크 소스에 대한 액세스 제공
+
+- JDBC Client를 사용하면 JDBC 연결을 지원하는 모든 애플리케이션에서 라이브로 Hive 데이터에 직접 연결 가능
+  (Beeline CLI)
+
+- ODBC(Open Database Connectivity) Client는 응용 프로그램이 데이터 액세스를 위해 SQL을 사용하여 
+  DBMS의 데이터에 액세스 할 수 있도록 하는 ODBC 인터페이스를 사용
+
+** ODBC 드라이버는 JDBC보다 훨씬 빠르게 로드, JDBC의 액세스 속도는 ODBC보다 우수함
+
+* Partitioning 및 Bucketing
+- 쿼리 성능을 향상시키는 Hive 쿼리 최적화 기술
+  테이블에 더 많은 구조를 제공하고 더 나은 샘플링을 생성
+
+- Partitioning
+: 데이터는 특정 조건을 충족하는 하위 디렉토리인 파티션으로 나눔
+  일반적으로 Table의 Where 절에서 사용되는 하나 이상의 조건을 기반으로 데이터를 하위 디렉토리로 나눔
+  각 파티션에 대한 하위 디렉토리를 생성
+
+- Bucketing
+: ID 필드와 같이 대부분 고유한 값이 있는 경우 바람직
+  파티션 또는 Table에서 각 버킷에 대한 별도의 데이터 파일을 생성
+  각 버킷에 전체 데이터 세트의 알려진 임의 비율이 포함되므로 무작위 샘플링에 유용

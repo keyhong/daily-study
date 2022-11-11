@@ -1,0 +1,59 @@
+ * SerDe : 데이터 소스에서 HDFS로의 Serializer/Deserialize의 약자
+   빌드된 SerDe : Avro, ORC, RegEx, Thrift, Parquet, CSV, Json 등
+   압축을 통해 모든 데이터 형식에 대해 자신의 SerDe를 생성 가능
+
+* HBase : Java로 작성된 오픈 소스 비관계형 분산 데이터베이스
+  트랜잭션 실시간 처리 및 방대한 양의 데이터에 대한 랜덤 읽기/쓰기 액세스가 필요한
+  OLTP(Online Transaction Processing)에 적합
+
+* Zookeeper : HBase 클러스터의 HMaster, Region 서버를 포함한 모든
+                     HBase 구성 요소의 상태를 유지 관리하는 역할
+
+* Region : Hbase에서 수평적 확장성을 제공하는 확장성의 기본 단위
+  테이블 데이터의 하위 집합, 기본적으로 함께 저장되는 연속적이고 정렬된 행 범위
+  (처음에는 테이블에 대해 하나의 Region만 존재, 더 많은 행을 추가한 후 Region이 커지면
+   중간 키에서 두개로 분할되어 거의 동일한 절반을 만듬)
+
+* Region Server : 일련의 Region 서비스를 담당, 하나의 Region은 하나의 Region Server에서만 서비스 가능
+  Region 서버에 대한 Region 매핑은 META 테이블이라는 시스템 테이블에 보관
+  (META 테이블을 읽으면 키를 담당하는 Region을 식별 가능)
+  읽기 및 쓰기 작업의 경우 클라이언트는 HMaster를 우회하여 요청된 데이터를 제공하는 Region 서버로 직접 이동 가능
+
+* HMaster는 시작 시 Region을 할당하고 클러스터의 Region을 조정하고 관리하는 작업을 실행
+  클라이언트는 테이블 생성 및 삭제, 구조 변경을 위해 HMaster에 문의
+  HMaster는 로드밸런싱 작업 또는 Region 서버 장애의 결과로 한 Region 서버에서 다른 Region 서버로 Region을 이동가능
+
+* META Table : 클러스터의 Region 서버에 대한 Region의 위치 및 매핑을 저장
+
+* Bloom Filter : 검색을 촉진하기 위해 요소가 집합의 구성원인지 여부를 테스트하는 데 사용되는 특수 목적 확률적 인덱스
+
+
+
+
+ --------------------- --------------------- --------------------- --------------------- --------------------- ---------------------
+* Mapper
+: 입력 데이터를 parsing, transforming, filtering
+  Key-Value 쌍을 출력
+  데이터를 섞어 Sorting 및 Partitioning
+
+* Reducer
+: 위의 Mapper에서 섞인 데이터를 Aggregate
+
+** Input - Splitting - Mapping - Shuffling - Reducing - Final result
+
+ 
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+

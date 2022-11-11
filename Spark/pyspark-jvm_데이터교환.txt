@@ -1,0 +1,8 @@
+1. PySpark 코드는 JVM 또는 Python 하위 프로세스에서 실행됩니까?
+
+PySpark에서 Python 및 JVM 코드는 별도의 OS 프로세스에 있습니다.
+PySpark는 Python과 JVM 프로세스 간에 데이터를 교환하기 위해 두 언어 간의 상호 운용을 용이하게 하는 프레임워크인 Py4J를 사용합니다
+
+PySpark 작업을 시작하면 Python 프로세스로 시작하여 JVM 인스턴스를 생성하고 그 안에서 일부 PySpark 특정 코드를 실행합니다.
+그런 다음 해당 JVM에서 Spark 세션을 인스턴스화하여 Spark가 보는 드라이버 프로그램이 됩니다.
+해당 드라이버 프로그램은 세션이 구성된 방식에 따라 Spark 마스터에 연결하거나 in-proc 하나를 생성합니다.

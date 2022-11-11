@@ -1,0 +1,8 @@
+-- 파티션 정보 보기
+SHOW PARTITIONS 테이블명
+
+-- 테이블 통계 정보
+ANALYZE TABLE [테이블명] PARTITION(PT_STDR_YM = 202201) COMPUTE STATISTICS;
+
+-- 파티션별 테이블 총 개수 보기
+SELECT PT_STDR_YM, COUNT(*) FROM 테이블명 GROUPBY PT_STDR_YM ORDER BY 1;

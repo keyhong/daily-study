@@ -1,0 +1,120 @@
+1. 경로이동
+C:\Users\wnhon\Desktop\t\project
+C:\Users\wnhon\Desktop\t2\project
+
+2. docker-yaml 업로드
+docker-compose up -d
+
+docker-compose up -d -t [시간(초)]
+
+3. 도커 실행하기
+docker exec -it [컨테이너 이름] bash
+** i : interactive (입출력 stdin, stdout 사용), t : terminal (터미널)
+
+MySQL : docker exec -it [container_name] /bin/bash
+Python : docker exec -it [container_name] /bin/bash
+
+4. MySQL 접속
+mysql -u root -p
+
+select user, host from mysql.user;
+
+
+실행중인 도커 
+-- 죽은 도커 컨테이너 실행하기
+docker container run -it python:3.7.13 /bin/bash
+docker container run -it python:mysql:8.0.29 /bin/bash
+
+
+centos [docker pull centos]
+docker run --name centos-test --hostname centos-test -it -d centos
+
+
+docker images -a
+docker ps
+
+-- docker mysql image 만들기
+docker search mysql
+docker pull mysql:8.0.29
+
+-- docker python image 만들기
+docker search python
+docker pull python:3.7.13
+
+
+
+docker run --name hgw_kakao_test -p 13306:3306 -d  -e MYSQL_ROOT_PASSWORD=password  -v /Users/jmlim/datadir:/var/lib/mysql mysql:8.0.17
+
+docker run -it -name [이미지명] 
+
+
+-- 도커 컨테이너가 실행 중일때 접근
+docker attach + Container ID 
+docker attach db762f62f2f9
+
+
+
+
+-- 도커 컨테이너가 실행 중일때 접근 : docker exec -it [Container ID] /bin/bash
+docker exec -it kakao-python /bin/bash -- python
+docker exec -it 07fa0958f67f /bin/bash -- mysql
+
+
+
+
+docker start 818912199a7b /bin/bash
+docker container start 2e026569498a /bin/bash 
+
+
+# 위치는 python-tmp에 있다
+
+docker start kakao-python
+docker attach project-python-1
+docker container run -it --restart unless-stopped --name "kakao-python" python:3.7.13 /bin/bash
+
+
+-- mysql mysql CLI 접속가이드
+
+-- 계정 로그인 (mysql -u [사용자계정] -p)
+mysql -u [ID] -p
+
+-- 현존하는 데이터베이스 목록 보기
+show tables;
+
+set names utf8mb4 ;
+
+set names latin1;
+
+show variables like 'c%'
+
+
+
+
+docker-compose up -d // 컨테이너 생성
+docker exec -it CONTAINER_ID /bin/bash // mysql 컨테이너 내부 접속
+mysql -u root -p // 접속
+
+ALTER USER '[ID]'@'%' IDENTIFIED WITH mysql_native_password BY ['ID'];
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password by 'ROOT';
+FLUSH PRIVILEGES;
+
+select host, user from user;
+
+
+
+** https://xorms0707.tistory.com/91
+mysql> use mysql;
+mysql> select host, user, password from mysql.user;
+
+select host, user from mysql.user;
+
+set innodb_lock_wait_timeout= 28800;
+
+
+
+
+
+
+--tty : TeleTYpewriter (컨테이너에 접속된 상태)
+--iteractive (터미널 세션을 통해 컨테이너를 조작) 
+

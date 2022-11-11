@@ -1,0 +1,25 @@
+-- 테이블 MIGRATION
+
+
+(1) 파티션 확인
+show PARTITIONS [테이블명];
+
+(2) Internal에서만 파티션 드랍
+ALTER TABLE [테이블명] DROP IF EXIST PARTITION (PT_STDR_DE = '');
+
+** 절대 먼저 치지 말아야 할 command (이유 : EXTRENAL='FALSE' 설정시, drop시 실제 파일도 삭제됨)
+ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE');
+
+(3) 테이블 이름 변경
+ALTER TABLE [BEFORE-테이블명] RENAME TO [NEW-테이블명];
+
+(4) Linux에서 기존 폴더 경로에서 옮기려는 경로로 파일 MOVE
+
+(5) 파일경로 위치 변경
+ALTER TABLE [테이블명] SET LOCATION 'maprfs:/DM/soss.db/DW_PCEL_TMZN_SXDS_AGGR_TY_STT'
+
+(6) 파티션 생성
+ALTER TABLE [테이블명] ADD PARTITION (pt_stdr_ym = 201901);
+
+(7) Internal 파티션 폴더 통계 정보 기입
+ANALYZE TABLE [테이블명] PARTITION (PT_STDR_YM = 202201) COMPUTE STATISTICS;
