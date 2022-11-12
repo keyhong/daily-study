@@ -1,3 +1,14 @@
+<header>
+  <h2> HiveQL DDL(Data Definition Language) 정리 </h2>
+</header>
+
+
+
+
+
+
+
+
 -- 테이블 생성
 CREATE EXTERNAL TABLE IF NOT EXISTS MIG.TEST (        --(T)테스트
   ERR_DATE                   STRING               COMMENT   '일자' 
