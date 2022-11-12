@@ -2,6 +2,14 @@
   <h2> HiveQL DDL(Data Definition Language) 정리 </h2>
 </header>
 
+<body>
+  <dl>
+    <li> 테이블 생성 </li>
+  </dl>
+
+  
+</body>
+  
 
 
 
