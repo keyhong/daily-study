@@ -5,19 +5,7 @@
 <body>
   <dl>
     <li> 테이블 생성 </li>
-  </dl>
-
-  
-</body>
-  
-
-
-
-
-
-
-
--- 테이블 생성
+<pre>
 CREATE EXTERNAL TABLE IF NOT EXISTS MIG.TEST (        --(T)테스트
   ERR_DATE                   STRING               COMMENT   '일자' 
 , ERR_TIME                   STRING               COMMENT   '시간' 
@@ -32,6 +20,15 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0002'
 STORED AS ORC
 LOCATION  '/mapr/mapr.daegu.go.kr/DW/mig.db' 
 TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
+</pre>
+  </dl>
+
+  
+  
+  
+</body>
+
+
 
 -- 파티션 생성
 ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201)
