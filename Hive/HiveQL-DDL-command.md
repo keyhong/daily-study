@@ -6,7 +6,7 @@
   <dl>
     <li> 테이블 생성 </li>
 <pre>
-CREATE EXTERNAL TABLE IF NOT EXISTS MIG.TEST (        --(T)테스트
+CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)테스트
   ERR_DATE                   STRING               COMMENT   '일자' 
 , ERR_TIME                   STRING               COMMENT   '시간' 
 , DAG                        STRING               COMMENT   '대그' 
@@ -23,15 +23,17 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
 </pre>
   </dl>
 
-  
+  <dl>
+    <li> 파티션 생성 </li>
+<pre> ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201) </pre>
+  </dl>  
   
   
 </body>
 
 
 
--- 파티션 생성
-ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201)
+
 
 -- 테이블 삭제
 (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE');
