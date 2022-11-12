@@ -28,19 +28,36 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
 <pre> ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201) </pre>
   </dl>  
   
+  <dl>
+    <li> 테이블 삭제 </li>
+    <pre> (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE'); </pre>
+    <pre>
+(2-1) 테이블 전체 삭제
+DROP TABLE [테이블명]
+
+(2-2) 파티션만 삭제
+ALTER TABLE [테이블명] DROP IF EXISTS PARTITION ( [파티션 컬럼]=[조건] )
+</pre>
+  </dl>  
+  
+  <dl>
+    <li> 파티션 생성 </li>
+<pre> ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201) </pre>
+  </dl>    
+  
+  
+  
+  
+  
   
 </body>
 
-
-
-
-
--- 테이블 삭제
+-- 
 (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE');
 (2-1) 테이블 전체 삭제
-DROP TABLE [테이블명]
+
 (2-2) 파티션만 삭제
-ALTER TABLE [테이블명] DROP IF EXISTS PARTITION(PT_STDR_
+ALTER TABLE [테이블명] DROP IF EXISTS PARTITION(PT_STDR_DE= '')
 
 -- 테이블 이름 변경
 ALTER TABLE RENAME [BEFORE-테이블명] RENAME TO [NEW-테이블명];
