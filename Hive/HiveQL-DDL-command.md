@@ -26,15 +26,16 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
   </dl><hr>
   
   <dl>
-    <li> 테이블 삭제 </li>
-    <pre> (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
-<pre>
-(2-1) 테이블 전체 삭제
-DROP TABLE [테이블명]
-
-(2-2) 파티션만 삭제
-ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건])
-</pre>
+    <li> 삭제 프로퍼티 설정 </li>
+    <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
+  </dl><br>
+  <dl>
+    <li> (1) 테이블 전체 데이터 삭제 </li>
+    <pre> DROP TABLE [테이블명] </pre>
+  </dl>
+  <dl>
+    <li> (2) 파티션 데이터만 삭제 </li>
+    <pre> ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건]) </pre>
   </dl><hr>
   
   <dl>
