@@ -22,20 +22,7 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
   
   <dl>
     <li> 파티션 생성 </li>
-    <pre> ALTER TABLE [테이블명] ADD IF NOT EXISTS PARTITION  (['파티션 컬럼'] = [조건]) </pre>
-  </dl><hr>
-  
-  <dl>
-    <li> 삭제 프로퍼티 설정 </li>
-    <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
-  </dl><br>
-  <dl>
-    <li> (1) 테이블 전체 데이터 삭제 </li>
-    <pre> DROP TABLE [테이블명] </pre>
-  </dl>
-  <dl>
-    <li> (2) 파티션 데이터만 삭제 </li>
-    <pre> ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건]) </pre>
+    <pre> ALTER TABLE [테이블명] ADD IF NOT EXISTS PARTITION (['파티션 컬럼'] = [조건]) </pre>
   </dl><hr>
   
   <dl>
@@ -57,5 +44,18 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
     <li> 프로퍼티 LOCATION 수정 </li>
     <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('LOCATION = ["경로"]') </pre>
   </dl><hr>
-    
+
+  
+  <dl>
+    <li> 삭제 프로퍼티 설정 </li>
+    <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
+  </dl><br>
+  <dl>
+    <li> (1) 테이블 전체 데이터 삭제 </li>
+    <pre> DROP TABLE [테이블명] </pre>
+  </dl>
+  <dl>
+    <li> (2) 파티션 데이터만 삭제 </li>
+    <pre> ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건]) </pre>
+  </dl><hr>  
 </body>
