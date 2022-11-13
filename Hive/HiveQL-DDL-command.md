@@ -3,12 +3,12 @@
 </header>
 
 <body>
+  
   <dl>
     <li> 테이블 생성 </li>
 <pre>
 CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)테스트
   ERR_DATE                   STRING               COMMENT   ['컬럼 COMMENT'] 
-, ERR_TIME                   STRING               COMMENT   ['컬럼 COMMENT']
 , IDX                        BIGINT               COMMENT   ['컬럼 COMMENT']
 , LOAD_AVERAGE_1MIN          DECIMAL(N1, N2)      COMMENT   ['컬럼 COMMENT'] 
  )
@@ -22,51 +22,43 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
 
   <dl>
     <li> 파티션 생성 </li>
-<pre> ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201) </pre>
+<pre> ALTER TABLE [테이블명] ADD IF NOT EXISTS PARTITION  (['파티션 컬럼'] = [조건]) </pre>
   </dl>  
   
   <dl>
     <li> 테이블 삭제 </li>
-    <pre> (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE'); </pre>
+    <pre> (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
     <pre>
 (2-1) 테이블 전체 삭제
 DROP TABLE [테이블명]
 
 (2-2) 파티션만 삭제
-ALTER TABLE [테이블명] DROP IF EXISTS PARTITION ( [파티션 컬럼]=[조건] )
+ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건])
 </pre>
   </dl>  
   
   <dl>
-    <li> 파티션 생성 </li>
-<pre> ALTER TABLE [테이블명] ADD PARTITION(PT_STDR_YM = 202201) </pre>
+    <li> 테이블명 변경 </li>
+<pre> ALTER TABLE RENAME [BEFORE-테이블명] RENAME TO [NEW-테이블명]; </pre>
   </dl>    
   
+   <dl>
+    <li> 파일경로 위치 변경 </li>
+<pre> ALTER TABLE [테이블명] SET LOCATION ['경로'] </pre>
+  </dl>    
   
-  
-  
-  
-  
+   <dl>
+    <li> 프로퍼티 COMMENT 수정 </li>
+<pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('COMMENT = ["NEW-COMMENT"]') </pre>
+  </dl>    
+    
+   <dl>
+    <li> 프로퍼티 LOCATION 수정 </li>
+<pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('LOCATION = ["경로"]') </pre>
+  </dl>    
+    
 </body>
 
--- 
-(1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE');
-(2-1) 테이블 전체 삭제
-
-(2-2) 파티션만 삭제
-ALTER TABLE [테이블명] DROP IF EXISTS PARTITION(PT_STDR_DE= '')
-
--- 테이블 이름 변경
-ALTER TABLE RENAME [BEFORE-테이블명] RENAME TO [NEW-테이블명];
-
--- 파일경로 위치 변경
-ALTER TABLE [테이블명] SET LOCATION 'maprfs:/DM/soss.db/DW_PCEL_TMZN_SXDS_AGGR_TY_STT'
-
--- 프로퍼티 COMMENT 수정
-ALTER TABLE [테이블명] SET TBLPROPERTIES ('COMMENT = "대구PCELL기준정보"')
-
--- 프로퍼티 LOCATION 수정
-ALTER TABLE [테이블명]SET TBLPROPERTIES ('LOCATION = "MAPRFS:/DM/SOSS.DB/DG_PCEL_STDR_INFO"')
 
 
 
