@@ -7,18 +7,15 @@
     <li> 테이블 생성 </li>
 <pre>
 CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)테스트
-  ERR_DATE                   STRING               COMMENT   '일자' 
-, ERR_TIME                   STRING               COMMENT   '시간' 
-, DAG                        STRING               COMMENT   '대그' 
-, TASK                       STRING               COMMENT   '태스크' 
-, IDX                        BIGINT               COMMENT   '초 단위' 
-, LOAD_AVERAGE_1MIN          DECIMAL(6, 2)        COMMENT   '시스템부하율 1분 평균' 
-, ERR_TYPE                   STRING               COMMENT   '에러 종류' 
+  ERR_DATE                   STRING               COMMENT   ['컬럼 COMMENT'] 
+, ERR_TIME                   STRING               COMMENT   ['컬럼 COMMENT']
+, IDX                        BIGINT               COMMENT   ['컬럼 COMMENT']
+, LOAD_AVERAGE_1MIN          DECIMAL(N1, N2)      COMMENT   ['컬럼 COMMENT'] 
  )
-COMMENT '테스트'
+COMMENT ['테이블 COMMENT']
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0002'
 STORED AS ORC
-LOCATION  '/mapr/mapr.daegu.go.kr/DW/mig.db' 
+LOCATION  ['경로'] 
 TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
 </pre>
   </dl>
