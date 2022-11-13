@@ -7,7 +7,7 @@
   <dl>
     <li> 테이블 생성 </li>
 <pre>
-CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)테스트
+CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)[테이블명]
   ERR_DATE                   STRING               COMMENT   ['컬럼 COMMENT'] 
 , IDX                        BIGINT               COMMENT   ['컬럼 COMMENT']
 , LOAD_AVERAGE_1MIN          DECIMAL(N1, N2)      COMMENT   ['컬럼 COMMENT'] 
