@@ -18,23 +18,24 @@ STORED AS ORC
 LOCATION  ['경로'] 
 TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
 </pre>
+    
   </dl>
 
   <dl>
     <li> 파티션 생성 </li>
-<pre> ALTER TABLE [테이블명] ADD IF NOT EXISTS PARTITION  (['파티션 컬럼'] = [조건]) </pre>
+    <pre> ALTER TABLE [테이블명] ADD IF NOT EXISTS PARTITION  (['파티션 컬럼'] = [조건]) </pre>
   </dl>  
   
   <dl>
     <li> 테이블 삭제 </li>
     <pre> (1) ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE') </pre>
     <pre>
-(2-1) 테이블 전체 삭제
-DROP TABLE [테이블명]
+    (2-1) 테이블 전체 삭제
+    DROP TABLE [테이블명]
 
-(2-2) 파티션만 삭제
-ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건])
-</pre>
+    (2-2) 파티션만 삭제
+    ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조건])
+    </pre>
   </dl>  
   
   <dl>
@@ -49,16 +50,12 @@ ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (['파티션 컬럼'] = [조
   
    <dl>
     <li> 프로퍼티 COMMENT 수정 </li>
-<pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('COMMENT = ["NEW-COMMENT"]') </pre>
+    <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('COMMENT = ["NEW-COMMENT"]') </pre>
   </dl>    
     
    <dl>
     <li> 프로퍼티 LOCATION 수정 </li>
-<pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('LOCATION = ["경로"]') </pre>
+    <pre> ALTER TABLE [테이블명] SET TBLPROPERTIES ('LOCATION = ["경로"]') </pre>
   </dl>    
     
 </body>
-
-
-
-
