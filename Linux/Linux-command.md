@@ -11,7 +11,7 @@
 <li>-c : 파일을 tar로 압축</li>
 <li>-x : tar 압축풀기</li>
 <li>-f : 파일 이름을 지정</li>
-<li>-z : gzip으로 압축하거나 해제</li>
+<li>-z : gzip으로 압축하거나 gzip(tar.gz) 해제</li>
 </ol><hr>
 <ol>
 <li>tar 압축을 할 때 : tar -cvf [압축파일명.tar] [폴더명] </li>
@@ -21,5 +21,4 @@
 </pre>
   </dl><hr>
   
- 
 </body>
