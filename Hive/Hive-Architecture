@@ -1,0 +1,43 @@
+* Hive 아키텍처
+
+- User Interface : 사용자에게 HDFS를 사용하기 위한 인터페이스 제공. Hive Web UI, 커맨드라인 (HD Insight는 윈도우 서버만 해당)
+
+- Meta Store : 하이브에서 사용하는 데이터베이스의 메타 정보들과, HDFS 매핑 정보들이 저장
+
+- HIveQL Process Engine : HiveQL을 이용해서 MapReduce 프로그램을 자바로 작성하는 것이 아닌, MapReduce Job을 위한 쿼리 실행
+
+- Excution Engine : 맵 리듀스를 실행시키는 엔진
+
+- HDFS or HBASE : 분산처리 파일 시스템
+
+
+* Hive 작동원리
+
+1. Execute Query (Interface -> Driver)
+- 사용자가 Hive Web이나 커맨드라인을 통해 하이브 데이터베이스로 쿼리 질의
+(데이터베이스와의 연결은 JDBC 등 아무 드라이버를 사용해도 가능)
+
+2. Get Plan (Drive -> Compiler)
+- 드라이버는 컴파일러에게 쿼리 플랜을 요청. 쿼리 컴파일러는 쿼리를 받아서 어떻게 처리할 것인지 쿼리 플랜 작성
+
+3.4 Get Meta Data (Compiler <-> Meta Store)
+- 쿼리 컴파일러는 MetaStore로부터 쿼리를 처리하는 데 필요한 메타정보를 습득
+
+5. Send Plan (Compiler -> Driver)
+- 컴파일러는 쿼리 플랜을 작성해서 드라이버에게 전달
+
+6. Execute Plan (Drive -> Execution Engine)
+- 드라이버는 Execution Engine에게 쿼리 플랜을 전달
+
+7. Execute Job
+- 쿼리가 내부적으로 맵리듀스 잡으로 변환되어 실행. Execution Engine은 네임노드에 있는
+  JobTracker에게 잡을 전달. 그리고 JobTracker는 데이터 노드에 있는 TaskTracker에 잡을 임명
+  
+8. Fetch Result
+- Execution Engine은 맵 리듀스 처리 결과를 데이터 노드로부터 받음
+
+9. Send Results
+- Execution Engine은 드라이버에게 데이터 노드로부터 받은 결과들을 전달
+
+10. Send Results
+- 드라이버는 하이브 인터페에스에게 결과들을 전달
