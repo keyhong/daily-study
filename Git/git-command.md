@@ -43,5 +43,27 @@
     <li> 원격저장소 삭제 </li>
     <pre> git remote rm <저장소 별칭> </pre>
   </dl><hr> 
+
+
+  <dl>
+    <li> 브랜치 만들기 </li>
+    <pre> git branch <브랜치명> </pre>
+  </dl><hr>
+  
+  <dl>
+    <li> 브랜치 리스트 확인 </li>
+    <pre> git branch <저장소 별칭> </pre>
+  </dl><hr> 
+  
+  <dl>
+    <li> 브랜치 삭제 </li>
+    <pre> git branch -d <브랜치명> </pre>
+  </dl><hr>
+
+
+  <dl>
+    <li> 브랜치 강제 삭제 </li>
+    <pre> git branch -D <브랜치명> </pre>
+  </dl><hr>
   
 </body>
