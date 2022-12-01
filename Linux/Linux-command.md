@@ -21,4 +21,29 @@
 </pre>
   </dl><hr>
   
+  <dl>
+    <li> CPU 정보 확인 </li>
+    <pre> cat /etc/proc/cpuinfo </pre>
+  </dl><hr>
+  
+  <dl>
+    <li> JVM 위에서 구동되는 프로세스 확인 </li>
+    <pre> jps </pre>
+  </dl><hr>
+  
+  <dl>
+    <li> 네트워크 연결 확인 </li>
+<pre>
+* netstat [-option]<hr>
+<li>-a: 모두 </li>
+<li>-n : 포트넘버 </li>
+<li>-t : TCP(Transaction Control Protocol) </li>
+<li>-u : UDP(User Datagram Protocol) </li>
+<li>-p : PID (Process ID) </li>
+</ol><hr>
+<ol>
+<li>tar 오픈된 포트 보기 : netstat -antup | grep LISTEN | sort -n </li>
+</pre>
+  </dl><hr>  
+  
 </body>
