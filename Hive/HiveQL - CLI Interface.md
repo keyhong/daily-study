@@ -10,12 +10,12 @@
  
    <dl>
     <li> hive CLI로 스크립트 명령어 실행하기  </li>
-    <pre> hive -f &lt;쿼리 스크립트&gt; </pre>
+    <pre> hive -f &lt;쿼리 스크립트&gt; <br> EX) hive -f &lt;select_idex_info.hql&gt; </pre>
   </dl><hr>
 
    <dl>
     <li> hive CLI로 스크립트 명령어 실행하기 (변수에 값을 넣어 전달하기)  </li>
-    <pre> hive --hivevar &lt;key&gt;=&lt;value&gt; -f &lt;쿼리 스크립트&gt; <br> EX) hive --hivevar dt=20221201 -f &lt;select_idex_info.hql&gt; <br> 스크립트 내부) SELECT * FROM SOSS.DM_SAFE_IDEX_GRID WHERE PT_STDR_DE = ${dt} </pre>
+    <pre> hive --hivevar &lt;key&gt;=&lt;value&gt; -f &lt;쿼리 스크립트&gt; <br> EX) hive --hivevar dt=20221201 -f &lt;select_idex_info.hql&gt; <br> (스크립트 내부) SELECT * FROM SOSS.DM_SAFE_IDEX_GRID WHERE PT_STDR_DE = ${dt} </pre>
   </dl><hr>
 
    <dl>
