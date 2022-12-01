@@ -19,7 +19,7 @@
   </dl><hr>
 
    <dl>
-    <li> hive CLI로 스크립트 명령어 출력 내용(컬럼명 포함) csv파일로 추출하기  </li>
+    <li> hive CLI로 스크립트 명령어 출력 내용(컬럼명 포함)을 CSV 파일로 추출하기  </li>
     <pre> hive --hiveconf hive.cli.print.header=True --hivevar &lt;key&gt;=&lt;value&gt; -f &lt;쿼리 스크립트&gt; | sed 's/[\t]/,/g' > .(현재경로)/&lt;파일명.csv&gt; <br> Ex) hive --hiveconf hive.cli.print.header=True --hivevar dt='20221201' -f select_idex_info.hql | sed 's/[\t]/,/g' > ./output.csv </pre>	
 
   </dl><hr>
