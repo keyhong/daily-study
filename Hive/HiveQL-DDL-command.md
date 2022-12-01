@@ -55,7 +55,7 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
     <pre> DROP TABLE <테이블명> </pre>
   </dl>
   <dl>
-    <li> (2) 파티션 데이터만 삭제 </li>
+    <li> (2) 파티션 데이터만 삭제 (파티션 조건은 부등호도 가능) </li>
     <pre> ALTER TABLE <테이블명> DROP [IF EXISTS] PARTITION (<'파티션 컬럼'> = <조건>) </pre>
   </dl><hr>  
 </body>
