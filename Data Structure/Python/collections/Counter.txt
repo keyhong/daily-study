@@ -1,0 +1,38 @@
+* Counter
+- Sequence type의 data element들의 갯수를 dict 형태로 반환
+
+>>> from collections import Counter
+>>> c = Counter(['B', 'S', 'S', 'S, 'S', 'B', 'B'])
+>>> print(b)
+Counter({'S': 4, 'B': 3})
+
+>>> len(['B', 'S', 'S', 'S, 'S', 'B', 'B'])
+7
+
+- Dict type, keyword paramter 등도 모두 처리 가능
+>>> c = Counter({'red': 4, 'blue': 2})
+>>> print(c)
+>>> print(list(c.elements()))
+Counter({'red': 4, 'blue': 2})
+['blue', 'blue', 'red', 'red', 'red', 'red']
+
+>>> c = Counter(a=4, b=2, c=0, d=-2)
+>>> d = Counter(a=1, b=2, c=3, d=4)
+>>> c.subtract(d)
+>>> print(c)
+Counter({'a': 3, 'b': 0, 'c': -3, 'd': -6})
+
+>>> print(c+d)
+Counter({'a': 5, 'b': 4, 'c': 3, 'd': 2})
+
+>>> print(c & d)
+Counter({'b': 2, 'a': 1})
+
+>>> print(c | d)
+Counter({'a': 4, 'd': 4, 'c': 3, 'b': 2})
+
+
+>>> text = '''da asdk a a adaw afw awf ala'
+>>> sorted(Counter(text).items(), key=lambda t: t[1], reverse=True)
+>>> print(Counter(text)['a'])
+2

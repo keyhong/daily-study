@@ -1,0 +1,37 @@
+* defaultdict
+- Dict type의 값에 기본 값을 지정, 신규값 생성시 사용하는 방법
+
+>>> from collections import defaultdict
+>>> d = defaultdict(object) # Default dictionary를 생성
+>>> d = defaultdict(lambda: 0) # Default 값을 0으로 설절함
+>>> print(d['first'])
+0
+
+- 하나의 지문에 각 단어들이 몇 개나 있는지 세고 싶을경우?
+- Text-mining 접근법 - Vector Space Model
+
+>>> text = ''' efj apwa dkwaowd woa jwdDDSdsdw Owjda ojawo '''.lower().split()
+>>> def get_key(x):
+>>> 	return x[1]
+
+>>> from collections import defaultdict
+>>> d = defaultdict(lambda : 0)
+>>> d
+defaultdict(<function __main__.<lambda>()>, {})
+
+>>> for word in text:
+>>> d[word] += 1
+>>> d
+defaultdict(<function __main__.<lambda>()>,
+{'a': 0,
+ 'press': 0,
+ 'efj' : 1,
+ ...
+})
+
+>>> def get_key(items):
+>>> 	return items[1]
+
+>>> sorted_dict = OrderedDict()
+>>> for i, v in sorted(d.items(), key=get_key, reverse=True): # value 값을 기준으로 내림차순 정렬
+>>> 	sorted_dict[i] = v

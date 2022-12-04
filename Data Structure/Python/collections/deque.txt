@@ -1,0 +1,53 @@
+* deque
+- Stack과 Queue를 지원하는 모듈
+- List에 비해 효율적인=빠른 자료 저장 방식을 지원함
+
+>>> from collections import deque
+>>> deque_list = deque()
+>>> for i in range(5):
+>>>	    deque_list.append(5)
+>>> deque_list.appendleft(10)
+>>> deque_list
+deque([10, 0, 1, 2, 3, 4])
+
+- rotate, reverse 등 Linked List의 특성을 지원함
+- 기존 list 형태의 함수를 모두 지원함
+
+>>> deque_list.rotate(1)
+>>> deque_list
+deque([4, 10, 0, 1, 2, 3])
+
+>>> deque_list.append(100)
+>>> deque_list
+deque([4, 10, 0, 1, 2, 3, 100])
+
+>>> deque_list.extend([5, 6, 7])
+deque([4, 10, 0, 1, 2, 3, 100, 5, 6, 7])
+
+>>> deque_list.extendleft([5, 6, 7])
+deque([7, 6, 5, 4, 10, 0, 1, 2, 3, 100, 5, 6, 7])
+ 
+>>> deque(reversed(deque_list))
+deque([7, 6, 5, 100, 3, 2, 1, 0, 10, 4, 5, 6, 7])
+
+- deque는 기존 list보다 효율적인 자료구조를 제공
+- 효율적 메모리 구조로 처리 속도 향상
+
+def general_list():
+	just_list = []
+	for i in range(100):
+		for i in range(100):
+			just_list.append(i)
+			just_list.pop()
+>>> %timeit general_list()
+** %timeit general_list() : jupyter의 명령어의 속도를 재는 매직명령어
+3.6 ms +- 292 usper loop (mean +- std. dev. of 7 runs, 100 loops each)
+
+def deque_list():
+	deque_list = deque()
+	for i in range(100):
+		for i in range(100):
+			deque_list.append(i)
+			deque_list.pop()
+>>> %timeit deque_list()
+1.04 ms +- 115 usper loop (mean +- std. dev. of 7 runs, 100 loops each)
