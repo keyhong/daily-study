@@ -7,7 +7,7 @@
   <dl>
     <li> Import 가능한 패키지 보기 </li>
 <pre>
-&#35;리스트 형식의 패키지와 버전을 이쁘게 보기 위해 사용
+&#35; 리스트 형식의 패키지와 버전을 이쁘게 보기 위해 사용
 from pprint import pprint <br>
 
 &#35; 파이썬의 내장 모듈. working_set의 reuturn type은 &lt;class 'pkg_resources.WorkingSet' &gt;. 이를 리스트로 변환 필요하다.
