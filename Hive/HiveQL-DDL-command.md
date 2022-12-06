@@ -22,7 +22,7 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
   
   <dl>
     <li> 파티션 생성 </li>
-    <pre> ALTER TABLE <테이블명> ADD [IF NOT EXISTS] PARTITION (<'파티션 컬럼'> = <조건>) </pre>
+    <pre> ALTER TABLE <테이블명> ADD [IF NOT EXISTS] PARTITION (<파티션 컬럼> = <조건>) </pre>
   </dl><hr>
   
   <dl>
@@ -56,6 +56,6 @@ TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
   </dl>
   <dl>
     <li> (2) 파티션 데이터만 삭제 (파티션 조건은 부등호도 가능) </li>
-    <pre> ALTER TABLE <테이블명> DROP [IF EXISTS] PARTITION (<'파티션 컬럼'> = <조건>) </pre>
+    <pre> ALTER TABLE <테이블명> DROP [IF EXISTS] PARTITION (<파티션 컬럼> = <조건>) </pre>
   </dl><hr>  
 </body>
