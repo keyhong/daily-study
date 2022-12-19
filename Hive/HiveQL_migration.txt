@@ -5,7 +5,7 @@
 show PARTITIONS [테이블명];
 
 (2) Internal에서만 파티션 드랍
-ALTER TABLE [테이블명] DROP IF EXIST PARTITION (PT_STDR_DE = '');
+ALTER TABLE [테이블명] DROP IF EXISTS PARTITION (PT_STDR_DE = '');
 
 ** 절대 먼저 치지 말아야 할 command (이유 : EXTRENAL='FALSE' 설정시, drop시 실제 파일도 삭제됨)
 ALTER TABLE [테이블명] SET TBLPROPERTIES('EXTERNAL' = 'FALSE');
