@@ -1,5 +1,5 @@
 <header>
-  <h2> HiveQL DDL(Data Definition Language) 정리 </h2>
+  <h2> 아이피(IP, Internet Protocol) 개념 정리 </h2>
 </header>
 
 <body>
