@@ -5,18 +5,33 @@
 <body>
   
   <dl>
-    <li> 테이블 생성 </li>
+    <li> 테이블 생성 (ORC) </li>
 <pre>
-CREATE EXTERNAL TABLE IF NOT EXISTS [테이블명] (        --(T)<테이블명>
-  ERR_DATE                   STRING               COMMENT   <'컬럼 COMMENT'> 
-, IDX                        BIGINT               COMMENT   <'컬럼 COMMENT'>
-, LOAD_AVERAGE_1MIN          DECIMAL(N1, N2)      COMMENT   <'컬럼 COMMENT'> 
- )
+CREATE [EXTERNAL] TABLE IF NOT EXISTS <테이블명> (
+  column1                   STRING               COMMENT   <'컬럼 COMMENT'> 
+, column2                   BIGINT               COMMENT   <'컬럼 COMMENT'>
+, column3                   DECIMAL(N1, N2)      COMMENT   <'컬럼 COMMENT'> 
+)
 COMMENT <'테이블 COMMENT'>
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0002'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY "\u0002"
 STORED AS ORC
 LOCATION  <'경로'> 
 TBLPROPERTIES ('ORC.COMPRESS'='SNAPPY')
+</pre>
+  </dl><hr>
+
+  <dl>
+    <li> 테이블 생성 (TEXTFILE) </li>
+<pre>
+CREATE [EXTERNAL] TABLE IF NOT EXISTS <테이블명> (
+  column1                   STRING               COMMENT   <'컬럼 COMMENT'> 
+, column2                   BIGINT               COMMENT   <'컬럼 COMMENT'>
+, column3                   DECIMAL(N1, N2)      COMMENT   <'컬럼 COMMENT'> 
+)
+COMMENT <'테이블 COMMENT'>
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ","
+STORED AS TEXTFILE
+LOCATION  <'경로'>
 </pre>
   </dl><hr>
   
